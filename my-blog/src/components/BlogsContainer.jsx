@@ -1,11 +1,10 @@
 import data from "../data";
 import Article from "./Article";
+import "./scss/blogsContainer.css";
 const BlogsContainer = () => {
   return (
-    <div>
-      {
-      
-      data.map((e) => {
+    <div className="blogs-container">
+      {data.map((e) => {
         return (
           <Article
             title={e.title}

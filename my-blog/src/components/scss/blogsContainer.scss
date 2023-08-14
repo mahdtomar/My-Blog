@@ -1,0 +1,12 @@
+.blogs-container {
+  //   display: flex;
+  //   justify-content: flex-start;
+  //   gap: 20px;
+  //   align-items: center;
+  //   flex-wrap: wrap;
+  background-color: red;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  margin: auto;
+}
