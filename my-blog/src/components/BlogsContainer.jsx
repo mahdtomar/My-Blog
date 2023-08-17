@@ -3,7 +3,7 @@ import Article from "./Article";
 import "./scss/blogsContainer.css";
 const BlogsContainer = () => {
   return (
-    <div className="blogs-container">
+    <div className="blogs-container container">
       {data.map((e) => {
         return (
           <Article

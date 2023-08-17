@@ -1,0 +1,30 @@
+.home-header {
+  min-height: 100vh;
+  background-image: url("../../assets/images/home-header.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+.home-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-direction: column;
+  text-align: center;
+}
+.home-header .container h1 {
+  font-size: var(--xl-text);
+}
+.home-header .container p {
+  max-width: 500px;
+}
+.home-header .container input {
+  padding: 3px 5px;
+  font-size: 22px;
+  border: none;
+  border-radius: 8px;
+}
+.home-header .container input:focus {
+  outline: none;
+}/*# sourceMappingURL=homeheader.css.map */

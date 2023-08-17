@@ -1,0 +1,30 @@
+.home-header {
+  min-height: 100vh;
+  background-image: url("../../assets/images/home-header.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+    text-align: center;
+    h1{
+        font-size: var(--xl-text);
+    }
+    p {
+      max-width: 500px;
+    }
+    input {
+      padding: 3px 5px;
+      font-size: 22px;
+      border: none;
+      border-radius: 8px;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EAMf,gBAAgB,EAAE,GAAG;EACrB,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,cAAc;EACrC,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;CACb",
-    "sources": [
-        "blogsContainer.scss"
-    ],
-    "names": [],
-    "file": "blogsContainer.css"
-}
+{"version":3,"sources":["blogsContainer.scss","blogsContainer.css"],"names":[],"mappings":"AAAA;EAME,qBAAA;EACA,aAAA;EACA,qCAAA;EACA,WAAA;EACA,YAAA;ACJF","file":"blogsContainer.css"}
