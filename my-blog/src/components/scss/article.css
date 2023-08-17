@@ -1,0 +1,29 @@
+.article {
+  width: 400px;
+  min-width: 250px;
+}
+.article img {
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+.article .title {
+  font-weight: bold;
+  font-size: var(--m-text);
+}
+.article .description {
+  margin: 20px 0px;
+}
+.article .keywords {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.article .keywords span {
+  padding: 4px;
+  border-radius: 4px;
+  background-color: rgba(194, 254, 192, 0.5);
+}/*# sourceMappingURL=article.css.map */

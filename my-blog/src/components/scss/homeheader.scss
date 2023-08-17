@@ -6,24 +6,42 @@
   height: 100vh;
   .container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     height: 100%;
     flex-direction: column;
-    text-align: center;
-    h1{
-        font-size: var(--xl-text);
+    text-align: left;
+    padding-left: 10px;
+    h1 {
+      font-size: var(--xl-text);
+      margin: 20px 0px;
+    }
+    span {
+      font-size: var(--l-text);
     }
     p {
       max-width: 500px;
+      font-size: var(--m-text);
     }
-    input {
-      padding: 3px 5px;
-      font-size: 22px;
-      border: none;
-      border-radius: 8px;
-      &:focus {
-        outline: none;
+    .main-search-label {
+      margin-top: 20px;
+      display: flex;
+      input {
+        font-size: var(--m-text);
+        padding: 10px 6px;
+        border: none;
+        border-radius: 8px;
+        &:focus {
+          outline: none;
+        }
+      }
+      button {
+        font-size: var(--m-text);
+        border: none;
+        color: white;
+        padding: 10px 6px;
+        background-color: black;
+        border-radius: 10px;
       }
     }
   }

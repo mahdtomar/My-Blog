@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./scss/article.css";
 const Article = (props) => {
   const [imageSrc, setImageSrc] = useState("");
 
@@ -25,8 +25,19 @@ const Article = (props) => {
       )}
       <p>
         <span className="title">{props.title}</span>
+        <p className="description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
+          expedita. Eius repellat qui dolore sunt laborum natus quis quia
+          deserunt nesciunt, aperiam delectus, nobis modi quo veniam fuga quae
+          repellendus?
+        </p>
       </p>
-      <div className="keywords">{props.keywords}</div>
+
+      <div className="keywords">
+        {props.keywords.map((e) => {
+          return <span>{e}</span>;
+        })}
+      </div>
     </div>
   );
 };

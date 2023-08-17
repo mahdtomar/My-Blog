@@ -7,10 +7,15 @@
   --xl-text: 50px;
   --l-text: 35px;
   --m-text: 25px;
-  --xl-text: 18px;
+  --xm-text: 18px;
 }
 .container {
   max-width: 1440px;
   width: 100%;
   margin: 0px auto;
+}
+.flex-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

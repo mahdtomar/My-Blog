@@ -1,0 +1,28 @@
+.article {
+  width: 400px;
+  min-width: 250px;
+  img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+  }
+  .title {
+    font-weight: bold;
+    font-size: var(--m-text);
+  }
+  .description {
+    margin: 20px 0px;
+  }
+  .keywords {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    span {
+      padding: 4px;
+      border-radius: 4px;
+      background-color: rgba(194, 254, 192, 0.5);
+    }
+  }
+}

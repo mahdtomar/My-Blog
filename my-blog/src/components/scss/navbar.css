@@ -1,0 +1,22 @@
+nav {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+nav .container {
+  padding: 0px 10px;
+  justify-content: space-between;
+}
+nav .container .logo {
+  font-size: var(--l-text);
+  color: white;
+}
+nav .container ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+nav .container ul a {
+  text-transform: capitalize;
+  text-decoration: none;
+  color: white;
+}/*# sourceMappingURL=navbar.css.map */

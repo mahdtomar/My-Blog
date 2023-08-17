@@ -1,7 +1,7 @@
 import React from "react";
 import BlogsContainer from "../components/BlogsContainer";
 import HomeHeader from "../components/HomeHeader";
-
+import "./scss/homepage.css";
 const Home = () => {
   return (
     <div>

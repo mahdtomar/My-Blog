@@ -7,24 +7,42 @@
 }
 .home-header .container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 100%;
   flex-direction: column;
-  text-align: center;
+  text-align: left;
+  padding-left: 10px;
 }
 .home-header .container h1 {
   font-size: var(--xl-text);
+  margin: 20px 0px;
+}
+.home-header .container span {
+  font-size: var(--l-text);
 }
 .home-header .container p {
   max-width: 500px;
+  font-size: var(--m-text);
 }
-.home-header .container input {
-  padding: 3px 5px;
-  font-size: 22px;
+.home-header .container .main-search-label {
+  margin-top: 20px;
+  display: flex;
+}
+.home-header .container .main-search-label input {
+  font-size: var(--m-text);
+  padding: 10px 6px;
   border: none;
   border-radius: 8px;
 }
-.home-header .container input:focus {
+.home-header .container .main-search-label input:focus {
   outline: none;
+}
+.home-header .container .main-search-label button {
+  font-size: var(--m-text);
+  border: none;
+  color: white;
+  padding: 10px 6px;
+  background-color: black;
+  border-radius: 10px;
 }/*# sourceMappingURL=homeheader.css.map */
