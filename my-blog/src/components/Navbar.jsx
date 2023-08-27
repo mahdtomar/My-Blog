@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import "./scss/navbar.css";
 const Navbar = () => {
   return (
-    <nav>
-      <div className="container flex-2">
+    <nav className="MainNavbar">
+      <div className="container flex-2 ">
         <span className="logo">YouthCoders</span>
         <ul>
           <Link to={"/"}>Home</Link>

@@ -1,21 +1,21 @@
-nav {
+.MainNavbar {
   background-color: rgba(0, 0, 0, 0.5);
 }
-nav .container {
+.MainNavbar .container {
   padding: 0px 10px;
   justify-content: space-between;
 }
-nav .container .logo {
+.MainNavbar .container .logo {
   font-size: var(--l-text);
   color: white;
 }
-nav .container ul {
+.MainNavbar .container ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
 }
-nav .container ul a {
+.MainNavbar .container ul a {
   text-transform: capitalize;
   text-decoration: none;
   color: white;

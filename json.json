@@ -1,0 +1,30 @@
+{
+  "id": "",
+  "title": "",
+  "Cover_Image": "",
+  "Cover_Letter": "",
+  "Sections": [
+    {
+      "title": "",
+      "img": "",
+      "description": ""
+    },
+    {
+      "title": "",
+      "img": "",
+      "description": ""
+    },
+    {
+      "title": "",
+      "img": "",
+      "description": ""
+    },
+    {
+      "title": "",
+      "img": "",
+      "description": ""
+    }
+  ],
+  "keywords": ["html", "css", "Js"],
+  "Created_At": ""
+}
