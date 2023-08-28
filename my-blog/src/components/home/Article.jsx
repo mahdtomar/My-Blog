@@ -7,7 +7,19 @@ const Article = (props) => {
     const loadImage = async () => {
       try {
         const image = await import(props.img);
-        setImageSrc(image.default);
+        console.log(image);
+        setImageSrc(
+          image.default
+            .replace("/components", "")
+            .replace("/@fs/", "")
+            .replace("/home", "")
+        );
+        console.log(
+          imageSrc
+            .replace("/components", "")
+            .replace("/@fs/", "")
+            .replace("/home", "")
+        );
       } catch (error) {
         console.error("Error loading image:", error);
       }
@@ -17,25 +29,20 @@ const Article = (props) => {
   }, [props.img]);
   return (
     <div className="article">
-      {imageSrc && (
-        <img
-          src={imageSrc.replace("/components", "").replace("/@fs/", "")}
-          alt=""
-        />
-      )}
+      {imageSrc && <img src={imageSrc} alt="" />}
       <p>
         <span className="title">{props.title}</span>
-        <p className="description">
+        <span className="description">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
           expedita. Eius repellat qui dolore sunt laborum natus quis quia
           deserunt nesciunt, aperiam delectus, nobis modi quo veniam fuga quae
           repellendus?
-        </p>
+        </span>
       </p>
 
       <div className="keywords">
-        {props.keywords.map((e) => {
-          return <span>{e}</span>;
+        {props.keywords.map((e, i) => {
+          return <span key={i}>{e}</span>;
         })}
       </div>
     </div>

@@ -1,4 +1,4 @@
-import data from "../data";
+import data from "../../data";
 import Article from "./Article";
 import "./scss/blogsContainer.css";
 const BlogsContainer = () => {

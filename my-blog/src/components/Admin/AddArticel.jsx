@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useRef } from "react";
+import React, { useEffect, useState } from "react";
 
 const AddArticel = () => {
-  const [files, setfiles] = useState("");
+  const [articles, setarticles] = useState("");
+  const [main, setMain] = useState("");
+  useEffect(() => {
+    console.log(articles);
+  }, [articles]);
+
   const addText = () => {
     const descriptionContainer = document.createElement("textarea");
     descriptionContainer.className = "articleDescription";
@@ -19,50 +22,68 @@ const AddArticel = () => {
     const articleContainer = document.querySelector(".extra-readings");
     const section = document.createElement("section");
     section.className = "article_section";
+    const titleContainer = document.createElement("input");
+    titleContainer.className = "articletitle";
     section.appendChild(addImage());
+    section.appendChild(titleContainer);
     section.appendChild(addText());
     articleContainer.appendChild(section);
   }
 
-  // const imagehandler = (e) => {
-  //   setFile([
-  //     ...file,
-  //     { image: e.target.files[0], title: e.target.files[0].name },
-  //   ]);
-  // };
-  const onFileUpload = () => {
-    // Create an object of formData
-    const formData = new FormData();
-    console.log(document.querySelectorAll(".articleImage"));
-    document.querySelectorAll(".articleImage").forEach((e) => {
-      // console.log(document.querySelectorAll(".articleImage")[i]);
-      // console.log({ image: e.files[0], title: e.files[0].name });
-      console.log(typeof file);
-      e.files.length < 1
-        ? ""
-        : setfile((file) => {
-            file.push({ image: e.files[0], title: e.files[0].name });
-          });
+  const Createarticles = async () => {
+    const updatedFiles = []; // Create a temporary array to hold the updated files
+    document.querySelectorAll(".article_section").forEach((e) => {
+      const image = e.children[0];
+      const title = e.children[1];
+      const description = e.children[2];
+      if (image.files.length > 0) {
+        updatedFiles.push({
+          image: image.files[0],
+          title: title.value,
+          description: description.value,
+        });
+      } else {
+        updatedFiles.push({
+          image: null,
+          title: title.value === "" ? null : title.value,
+          description: description.value === "" ? null : description.value,
+        });
+      }
     });
-    // Update the formData object
-    formData.append("CoverImage", [file.image, file.name]);
-
-    // Details of the uploaded file
-    console.log(file);
-    console.log(formData);
-
-    // Request made to the backend api
-    // Send formData object
-
-    // axios.post("api/uploadfile", formData);
+    return updatedFiles;
   };
-  const uploadHandler = () => {
-    document.querySelectorAll(".article_section").forEach((section) => {
-      setfiles([
-        { image: section.children[0], description: section.children[1] },
-      ]);
-      console.log(files);
-    });
+  const addingMainInfo = async () => {
+    const coverTitle = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    let coverImage = document.getElementById("Cover_Image").files;
+    let keywords = document.getElementById("keywords").value;
+    keywords.length == 0
+      ? (keywords.value = null)
+      : (keywords = keywords.split(" "));
+    coverImage.length == 0
+      ? (coverImage = null)
+      : (coverImage = coverImage[0]);
+    return {
+      coverImage: coverImage,
+      coverTitle: coverTitle,
+      description: description,
+      keywords: keywords,
+    };
+  };
+  const onFileUpload = async () => {
+    const articlesData = await Createarticles();
+    const mainData = await addingMainInfo();
+
+    setarticles([
+      {
+        title: mainData.coverTitle,
+        Cover_Image: mainData.coverImage,
+        Cover_Letter: mainData.description,
+        Sections: articlesData,
+        keywords: mainData.keywords,
+        Created_At: "",
+      },
+    ]); // Update the state with the updatedFiles array
   };
   return (
     <form
@@ -72,40 +93,38 @@ const AddArticel = () => {
       }}
     >
       <label htmlFor="title">
-        <input type="text" name="title" id="title" />
+        <input type="text" name="title" id="title" placeholder="title" />
       </label>
-      <label htmlFor="Cover_Image articleImage">
-        <input
-          type="file"
-          name="Cover_Image"
-          // onChange={(e) => {
-          //   imagehandler(e);
-          // }}
-          id="Cover_Image"
-        />
+      <label htmlFor="Cover_Image">
+        <input type="file" name="Cover_Image" id="Cover_Image" />
       </label>
       <label htmlFor="description">
-        <textarea name="description" />
+        <textarea
+          name="description"
+          id="description"
+          placeholder="description"
+          cols="30"
+          rows="10"
+        />
       </label>
       <div className="extra-readings"></div>
       <p className="Add_More_Blocks" onClick={AddMoreBlock}>
         Add Block
       </p>
-      <div id="output"></div>
-      <button type="submit" className="btn" onClick={uploadHandler}>
+      <textarea
+        name="keywords"
+        id="keywords"
+        cols="30"
+        rows="10"
+        placeholder="keywords"
+      ></textarea>
+      <button type="submit" className="btn" onClick={onFileUpload}>
         submit
       </button>
       <div className="display"></div>
+      <p onClick={addingMainInfo}>click me</p>
     </form>
   );
 };
 
 export default AddArticel;
-{
-  /* <p className="Add_More_Blocks" onClick={addText}>
-        Add Text
-      </p>
-      <p className="Add_More_Blocks" onClick={addImage}>
-        Add Image
-      </p> */
-}
