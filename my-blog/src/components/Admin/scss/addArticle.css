@@ -1,0 +1,26 @@
+.New_Article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+.New_Article input,
+.New_Article textarea {
+  width: 400px;
+  padding: 8px 4px;
+  border-radius: 4px;
+}
+.New_Article .extra-readings .article_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+.New_Article .extra-readings .article_section .articletitle {
+  width: 400px;
+}
+.New_Article .btn {
+  display: block;
+}/*# sourceMappingURL=addArticle.css.map */

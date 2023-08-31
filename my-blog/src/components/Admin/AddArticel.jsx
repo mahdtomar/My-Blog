@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import "./scss/addArticle.css";
 const AddArticel = () => {
   const [articles, setarticles] = useState("");
   const [main, setMain] = useState("");
@@ -9,13 +9,26 @@ const AddArticel = () => {
 
   const addText = () => {
     const descriptionContainer = document.createElement("textarea");
+    descriptionContainer.setAttribute("placeholder", "description");
+    // descriptionContainer.setAttribute("cols", "50");
+    // descriptionContainer.setAttribute("rows", "10");
     descriptionContainer.className = "articleDescription";
     return descriptionContainer;
   };
   const addImage = () => {
-    const imageContainer = document.createElement("input");
-    imageContainer.setAttribute("type", "file");
-    imageContainer.className = "articleImage";
+    const imageContainer = document.createElement("label");
+    const imageFile = document.createElement("input");
+    const previewImage = document.createElement("img");
+    imageFile.setAttribute("type", "file");
+    imageFile.className = "articleImage";
+    imageContainer.appendChild(imageFile);
+    imageContainer.appendChild(previewImage);
+    imageFile.addEventListener("change", (e) => {
+      const previewImage = imageContainer.children[1];
+      const [file] = e.target.files;
+      const src = URL.createObjectURL(file);
+      previewImage.setAttribute("src", src);
+    });
     return imageContainer;
   };
   function AddMoreBlock() {
@@ -23,6 +36,7 @@ const AddArticel = () => {
     const section = document.createElement("section");
     section.className = "article_section";
     const titleContainer = document.createElement("input");
+    titleContainer.setAttribute("placeholder", "title");
     titleContainer.className = "articletitle";
     section.appendChild(addImage());
     section.appendChild(titleContainer);
@@ -33,7 +47,7 @@ const AddArticel = () => {
   const Createarticles = async () => {
     const updatedFiles = []; // Create a temporary array to hold the updated files
     document.querySelectorAll(".article_section").forEach((e) => {
-      const image = e.children[0];
+      const image = e.children[0].children[0];
       const title = e.children[1];
       const description = e.children[2];
       if (image.files.length > 0) {
@@ -57,18 +71,20 @@ const AddArticel = () => {
     const description = document.getElementById("description").value;
     let coverImage = document.getElementById("Cover_Image").files;
     let keywords = document.getElementById("keywords").value;
-    keywords.length == 0
-      ? (keywords.value = null)
-      : (keywords = keywords.split(" "));
-    coverImage.length == 0
-      ? (coverImage = null)
-      : (coverImage = coverImage[0]);
+    keywords.length == 0 ? (keywords = null) : (keywords = keywords.split(" "));
+    coverImage.length == 0 ? (coverImage = null) : (coverImage = coverImage[0]);
     return {
       coverImage: coverImage,
       coverTitle: coverTitle,
       description: description,
       keywords: keywords,
     };
+  };
+  const preview = (e) => {
+    const previewImage = document.querySelector(".preview");
+    const [file] = e.target.files;
+    const src = URL.createObjectURL(file);
+    previewImage.setAttribute("src", src);
   };
   const onFileUpload = async () => {
     const articlesData = await Createarticles();
@@ -84,45 +100,73 @@ const AddArticel = () => {
         Created_At: "",
       },
     ]); // Update the state with the updatedFiles array
+    const response = await fetch("http://localhost:5173/admin/new", {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(articles), // body data type must match "Content-Type" header
+    });
+    console.log(JSON.stringify(articles));
+    console.log(response);
   };
+
   return (
     <form
-      className="New_Article"
+      className="New_Article container"
       onSubmit={(e) => {
         e.preventDefault();
       }}
     >
+      <h1>Add New Articles </h1>
       <label htmlFor="title">
-        <input type="text" name="title" id="title" placeholder="title" />
+        <input type="text" name="title" id="title" placeholder="Main title" />
       </label>
       <label htmlFor="Cover_Image">
-        <input type="file" name="Cover_Image" id="Cover_Image" />
+        <input
+          type="file"
+          onChange={(e) => {
+            preview(e);
+          }}
+          name="Cover_Image"
+          id="Cover_Image"
+        />
+        <div className="">
+          <img src="#" alt="" className="preview" />
+        </div>
       </label>
       <label htmlFor="description">
         <textarea
           name="description"
           id="description"
-          placeholder="description"
-          cols="30"
-          rows="10"
+          placeholder="Main description"
+          // cols="50"
+          // rows="10"
         />
       </label>
       <div className="extra-readings"></div>
       <p className="Add_More_Blocks" onClick={AddMoreBlock}>
         Add Block
       </p>
-      <textarea
-        name="keywords"
-        id="keywords"
-        cols="30"
-        rows="10"
-        placeholder="keywords"
-      ></textarea>
+      <label htmlFor="keywords">
+        <textarea
+          name="keywords"
+          id="keywords"
+          // cols="30"
+          // rows="10"
+          placeholder="keywords"
+        ></textarea>
+      </label>
       <button type="submit" className="btn" onClick={onFileUpload}>
         submit
       </button>
       <div className="display"></div>
-      <p onClick={addingMainInfo}>click me</p>
     </form>
   );
 };
